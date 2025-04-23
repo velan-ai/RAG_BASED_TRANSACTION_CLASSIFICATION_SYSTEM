@@ -41,10 +41,12 @@ def get_vector_store(text_chunks):
     print(f"FAISS index saved to {DB_FAISS_PATH}")
     st.success(f"FAISS index saved to {DB_FAISS_PATH}")
 
+
 # def get_vector_store(text_chunks):
 #     embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 #     vector_store = FAISS.from_texts(text_chunks, embedding=embeddings)
 #     vector_store.save_local("faiss_index")
+
 
 def get_conversational_chain():
     prompt_template = """
@@ -75,6 +77,7 @@ def get_conversational_chain():
     prompt = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
     chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
     return chain
+
 
 def user_input(user_question):
     embeddings = OpenAIEmbeddings(openai_api_key=api_key)
